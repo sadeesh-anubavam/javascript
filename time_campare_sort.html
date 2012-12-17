@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function displaytime()
+{
+var btimelist = new Array();
+btimelist = ['12:00AM','12:15AM','10:45PM','11:00PM','11:15PM','11:30PM','11:45PM','12:30AM','2:00AM','9:45PM','10:00PM','10:15PM','10:30PM','2:15AM','2:30AM','2:45AM','3:00AM','3:15AM','3:30AM','12:45AM','1:00AM','1:15AM','1:30AM','1:45AM','3:50AM','9:00PM','9:15PM','9:30PM'];
+/* time sort start*/
+var btimelistlength = btimelist.length;
+var swapp = "";
+for(var u = 0; u < btimelistlength; u++){
+  for(var v = u+1; v < btimelistlength; v++){
+		if(timecomparecheck(btimelist[u],btimelist[v])){
+			swapp = btimelist[u];
+			btimelist[u] = btimelist[v];
+			btimelist[v] = swapp;
+		}
+	}
+}
+alert(btimelist);
+/* time sort end */
+														
+function timecomparecheck(x,y){
+	var jwubustime = x;
+	var currenttime = y;
+
+	var gtime_h = "";
+	var gtime_m = "";
+	var gtime_a = "";
+	var ctime_h = "";
+	var ctime_m = "";
+	var ctime_a = "";
+	
+	var gtimearr1 = jwubustime.split(':');
+	gtime_m = gtimearr1[1].substr(0,2);
+	gtime_m = parseInt(gtime_m);
+	gtime_a = gtimearr1[1].substr(-2);
+	if(gtime_a == 'PM' && gtimearr1[0] != '12'){
+		gtime_h = parseInt(gtimearr1[0])+12;
+	}else{
+		if(gtime_a == 'AM' && gtimearr1[0] == '12'){
+			gtime_h = parseInt(0);
+		}else{
+			gtime_h = parseInt(gtimearr1[0]);		
+		}
+	}
+
+	var ctimearr1 = currenttime.split(':');
+	ctime_m = ctimearr1[1].substr(0,2);
+	ctime_m = parseInt(ctime_m);
+	ctime_a = ctimearr1[1].substr(-2);
+	if(ctime_a == 'PM' && ctimearr1[0] != '12'){
+		ctime_h = parseInt(ctimearr1[0])+12;
+	}else{
+		if(ctime_a == 'AM' && ctimearr1[0] == '12'){
+			ctime_h = parseInt(0);
+		}else{
+			ctime_h = parseInt(ctimearr1[0]);		
+		}
+	}
+
+	if(gtime_h > ctime_h){
+	  return(1);
+	} else if (gtime_h == ctime_h){
+		if(gtime_m > ctime_m || gtime_m == ctime_m){
+		  return(1);
+		}else{
+			return(0);
+		}
+	}else {
+		return(0);
+	}
+}
+/* compare given timestamp with current date */
+
+}
+</script>
+</head>
+<body>
+
+<h1>My First JavaScript</h1>
+<p id="demo">Time campare and sort - parasing the time eg: 7:15PM</p>
+
+<button type="button" onclick="displaytime()">Display sorted time</button>
+
+</body>
+</html> 
+
