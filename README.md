@@ -1,4 +1,5 @@
 javascript
 ==========
 
-compare given timestamp with current date
+javascript functionality for development
+
